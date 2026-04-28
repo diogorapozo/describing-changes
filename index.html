@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Describing Changes | Data Analysis</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+    <header class="main-header">
+        <h1>Describing Changes</h1>
+        <p>Data Interpretation & Reporting Module</p>
+    </header>
+
+    <div class="student-info">
+        <input type="text" id="student-name" placeholder="Enter your name to begin..." autocomplete="off">
+    </div>
+
+    <nav class="tabs-nav">
+        <button class="tab-btn active" data-target="tab-act-1"><i class="fa-solid fa-chart-line"></i> Activity 1: Read & Plot</button>
+        <button class="tab-btn" data-target="tab-act-2"><i class="fa-solid fa-file-signature"></i> Activity 2: Analyze & Describe</button>
+    </nav>
+
+    <main class="tabs-container">
+
+        <section id="tab-act-1" class="tab-content active">
+            <div class="activity-header">
+                <h2>Activity 1: Read & Plot</h2>
+                <p>Read the report below carefully. Use the sliders to plot the data on the graph according to the description.</p>
+            </div>
+            
+            <div class="split-layout">
+                <div class="panel text-panel">
+                    <h3>Cinema Visits Report</h3>
+                    <div class="report-text">
+                        <p>In January, male and female cinema visits were quite different. Over the first few months, female visits saw a <strong class="highlight">rapid rise</strong>, reaching 60% by March, while male visits dropped slightly, a <strong class="highlight">subtle</strong> difference that went <strong class="highlight">entirely unnoticed</strong> at first.</p>
+                        <p>By June, however, male visits had <strong class="highlight">grown substantially</strong>, reaching their peak of 70% and matching female visits. This peak was a <strong class="highlight">hugely significant</strong> change.</p>
+                        <p>This trend didn't last. After October, male visits were clearly <strong class="highlight">on the way out</strong>, plummeting down to 15% in December. Meanwhile, female attendance showed a <strong class="highlight">steady shift</strong> downwards after June, but the habit was already <strong class="highlight">taking hold</strong>, remaining relatively high at 60% until the end of the year.</p>
+                    </div>
+                </div>
+
+                <div class="panel chart-panel">
+                    <div class="chart-wrapper">
+                        <canvas id="plotChart"></canvas>
+                    </div>
+                    
+                    <div class="sliders-container">
+                        <div class="slider-group male-group">
+                            <h4><i class="fa-solid fa-person"></i> Male Data (%)</h4>
+                            <div class="slider-row"><label>Jan</label><input type="range" id="m-jan" min="0" max="80" value="0" step="5"><span class="val">0</span></div>
+                            <div class="slider-row"><label>Mar</label><input type="range" id="m-mar" min="0" max="80" value="0" step="5"><span class="val">0</span></div>
+                            <div class="slider-row"><label>Jun</label><input type="range" id="m-jun" min="0" max="80" value="0" step="5"><span class="val">0</span></div>
+                            <div class="slider-row"><label>Oct</label><input type="range" id="m-oct" min="0" max="80" value="0" step="5"><span class="val">0</span></div>
+                            <div class="slider-row"><label>Dec</label><input type="range" id="m-dec" min="0" max="80" value="0" step="5"><span class="val">0</span></div>
+                        </div>
+                        <div class="slider-group female-group">
+                            <h4><i class="fa-solid fa-person-dress"></i> Female Data (%)</h4>
+                            <div class="slider-row"><label>Jan</label><input type="range" id="f-jan" min="0" max="80" value="0" step="5"><span class="val">0</span></div>
+                            <div class="slider-row"><label>Mar</label><input type="range" id="f-mar" min="0" max="80" value="0" step="5"><span class="val">0</span></div>
+                            <div class="slider-row"><label>Jun</label><input type="range" id="f-jun" min="0" max="80" value="0" step="5"><span class="val">0</span></div>
+                            <div class="slider-row"><label>Oct</label><input type="range" id="f-oct" min="0" max="80" value="0" step="5"><span class="val">0</span></div>
+                            <div class="slider-row"><label>Dec</label><input type="range" id="f-dec" min="0" max="80" value="0" step="5"><span class="val">0</span></div>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <button id="reveal-btn" class="app-btn solid">Reveal Original Graph <i class="fa-solid fa-eye"></i></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tab-act-2" class="tab-content">
+            <div class="activity-header">
+                <h2>Activity 2: Analyze & Describe</h2>
+                <p>Look at the new graph regarding Website Visits. Write a report describing the trends. Use at least <strong>5</strong> target expressions from the checklist.</p>
+            </div>
+
+            <div class="full-panel top-chart">
+                <h3>% of students who visited the school website at least once a week</h3>
+                <div class="chart-wrapper static">
+                    <canvas id="analyzeChart"></canvas>
+                </div>
+            </div>
+
+            <div class="split-layout">
+                <div class="panel editor-panel">
+                    <h3>Your Report</h3>
+                    <textarea id="report-text" placeholder="Start writing your analysis here... Try to include the target vocabulary naturally."></textarea>
+                    
+                    <div class="editor-actions">
+                        <button id="check-grammar-btn" class="app-btn outline"><i class="fa-solid fa-spell-check"></i> Check Grammar</button>
+                        <button id="send-report-btn" class="app-btn solid"><i class="fa-solid fa-paper-plane"></i> Send Report</button>
+                    </div>
+                    <div id="grammar-feedback" class="mt-15"></div>
+                </div>
+
+                <div class="panel vocab-panel">
+                    <h3>Vocabulary Checklist <span id="vocab-counter">(0/5)</span></h3>
+                    <ul class="vocab-list" id="vocab-list">
+                        </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
